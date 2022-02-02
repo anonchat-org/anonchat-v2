@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
+  if (arguments.isEmpty) {
+    print('Usage: anonchat-server <port>');
+    return;
+  }
+
   /// All connected sockets
   final Set<Socket> sockets = {};
 

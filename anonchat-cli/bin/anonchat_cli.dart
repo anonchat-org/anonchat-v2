@@ -2,6 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
+  if (arguments.isEmpty) {
+    print('Usage: anonchat-cli <host:port>');
+    return;
+  }
+
+  // Connect to the server
   final socket = await Socket.connect(
     arguments[0].split(':')[0],
     int.parse(arguments[0].split(':')[1]),
