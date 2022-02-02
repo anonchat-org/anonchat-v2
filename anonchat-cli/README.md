@@ -1,6 +1,7 @@
+# anonchat-cli
 A pretty simple CLI client for anonchat.
 
-Usage:
+## Usage
 ```
 $ anonchat-cli <host>:<port>
 ```
