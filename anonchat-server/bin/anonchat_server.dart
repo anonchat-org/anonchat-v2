@@ -16,7 +16,7 @@ Future<void> main(List<String> arguments) async {
     socket.listen(
       (packet) {
         // If the message packet is not empty...
-        if (utf8.decode(packet).trim().isNotEmpty) {
+        if (utf8.decode(packet, allowMalformed: true).trim().isNotEmpty) {
           // ...then broadcast it to all connected cleints
           for (final s in sockets) {
             s.add(packet);
