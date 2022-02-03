@@ -24,13 +24,13 @@ Future<void> main(List<String> arguments) async {
   // Construct a request and send it
   var req = new Map();
   req['user'] = user;
-  stdin.listen((v){
-    req['msg'] = utf8.decode(v).trim(); 
+  stdin.listen((v) {
+    req['msg'] = utf8.decode(v).trim();
     socket.add(utf8.encode(jsonEncode(req)));
   });
 
   // Print new messages
-  socket.listen((v){ 
+  socket.listen((v) {
     var recv = jsonDecode(utf8.decode(v, allowMalformed: true).trim()); // lgtm
     print('<${recv["user"]}> ' + recv["msg"]);
   });
