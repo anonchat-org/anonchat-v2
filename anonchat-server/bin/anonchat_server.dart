@@ -20,17 +20,21 @@ Future<void> main(List<String> arguments) async {
 
     socket.listen(
       (packet) {
-        // If the packet is v2...
+        var pack = utf8.decode(packet, allowMalformed: true).trim();
         try {
-          var pack = utf8.decode(packet, allowMalformed: true).trim();
+          // Check if a packet uses the v2 system
           var v2check = json.decode(pack);
-          // ...then broadcast it to all connected cleints
+          // Broadcast it to all connected cleints
           print(pack);
           for (final s in sockets) {
             s.add(packet);
           }
         } on FormatException catch (e) {
-          print('v1 packet recieved');
+          // In case the packet is using the v1 system (plaintext)
+          print('v1 packet recieved: $pack');
+          for (final s in sockets) {
+            s.add(packet);
+          }
         }
       },
     )

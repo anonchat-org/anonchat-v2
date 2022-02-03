@@ -31,7 +31,12 @@ Future<void> main(List<String> arguments) async {
 
   // Print new messages
   socket.listen((v) {
-    var recv = jsonDecode(utf8.decode(v, allowMalformed: true).trim()); // lgtm
-    print('<${recv["user"]}> ' + recv["msg"]);
+    try {
+      var recv =
+          jsonDecode(utf8.decode(v, allowMalformed: true).trim()); // lgtm
+      print('<${recv["user"]}> ' + recv["msg"]);
+    } on FormatException catch (e) {
+      print('<v1 message> ' + utf8.decode(v, allowMalformed: true).trim());
+    }
   });
 }
