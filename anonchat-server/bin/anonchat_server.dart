@@ -13,7 +13,7 @@ Future<void> main(List<String> arguments) async {
 
   /// TCP server itself
   final server = await ServerSocket.bind('0.0.0.0', int.parse(arguments[0]));
-  print('Launched server on port ${int.parse(arguments[0])}\n');
+  print('\/\/ Launched server on port ${int.parse(arguments[0])}\n');
   server.listen((socket) {
     // Add fresh connected client to the list
     sockets.add(socket);
