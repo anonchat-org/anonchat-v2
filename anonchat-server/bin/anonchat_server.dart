@@ -22,15 +22,15 @@ Future<void> main(List<String> arguments) async {
       (packet) {
         // If the packet is v2...
         try {
-	  var pack = utf8.decode(packet, allowMalformed: true).trim();
-	  var v2check = json.decode(pack);
+          var pack = utf8.decode(packet, allowMalformed: true).trim();
+          var v2check = json.decode(pack);
           // ...then broadcast it to all connected cleints
-	  print(pack);
+          print(pack);
           for (final s in sockets) {
             s.add(packet);
           }
         } on FormatException catch (e) {
-	  print('v1 packet recieved');
+          print('v1 packet recieved');
         }
       },
     )
