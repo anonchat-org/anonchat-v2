@@ -20,12 +20,17 @@ Future<void> main(List<String> arguments) async {
 
     socket.listen(
       (packet) {
-        // If the message packet is not empty...
-        if (utf8.decode(packet, allowMalformed: true).trim().isNotEmpty) {
+        // If the packet is v2...
+        try {
+	  var pack = utf8.decode(packet, allowMalformed: true).trim();
+	  var v2check = json.decode(pack);
           // ...then broadcast it to all connected cleints
+	  print(pack);
           for (final s in sockets) {
             s.add(packet);
           }
+        } on FormatException catch (e) {
+	  print('v1 packet recieved');
         }
       },
     )
