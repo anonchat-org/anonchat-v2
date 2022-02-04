@@ -42,6 +42,7 @@ The built executables will be in the `build` folder.
 ## Running
 After you've downloaded the binaries from the [releases](https://github.com/anonchat-org/anonchat-v2/releases/latest), put them where you need to.
 
+### Client
 Let's say you need to connect to a server, which has an ip of `example.com` and port of `2345`.
 
 Example: `./cli example.com:2345`
@@ -49,6 +50,12 @@ Example: `./cli example.com:2345`
 By default this is going to give you the nickname of Anon, but if you need to identify yourself - you can add a parameter of a nickname
 
 Example: `./cli example.com:2345 bob`
+### Server
+And let's say that you need to start a server.
+
+First, you need to port-forward the port you are going to run your server on. If you don't know how to do that: [tutorial](https://is.gd/EkKnW1)
+
+Run the server instance with something like `./server 2345`, replacing 6969 with whatever port you wanna run the server on.
 
 ---
 
