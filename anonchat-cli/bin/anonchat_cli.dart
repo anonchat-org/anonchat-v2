@@ -8,9 +8,10 @@ Future<void> main(List<String> arguments) async {
   }
 
   // Assign variables
-  String ip = arguments[0].split(':')[0];
+  var socket; // this is honestly very retarded. this is for try/catch on line 23 to work.
+  var host = arguments[0].split(':')[0];
   int port = int.parse(arguments[0].split(':')[1]);
-  String user;
+  var user;
   if (arguments.length <= 1) {
     user = 'Anon';
   } else {
@@ -18,8 +19,13 @@ Future<void> main(List<String> arguments) async {
   }
 
   // Connect to the server
-  final socket = await Socket.connect(ip, port);
-  print('\/\/ Connected to $ip at $port as $user\n');
+  try {
+    socket = await Socket.connect(host, port);
+    print('\/\/ Connected to $host at $port as $user\n');
+  } on SocketException catch (e) {
+    print('Couldn\'t make connection with the specified host:port combination. Aborting.');
+    exit(1);
+  }
 
   // Construct a request and send it
   var req = new Map();
