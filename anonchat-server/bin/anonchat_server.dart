@@ -22,8 +22,16 @@ Future<void> main(List<String> arguments) async {
       (packet) {
         var pack = utf8.decode(packet, allowMalformed: true).trim();
         try {
-          // Check if a packet uses the v2 system
-          var v2check = json.decode(pack);
+          // Check if user wants to disconnect
+          // PLEASE I SWEAR TO GOD FIX THIS
+          var recv = json.decode(pack);
+          for (final lcmd in ['/LEAVE', '/DISCONNECT', '/QUIT']) {
+            if (lcmd == recv['msg']) {
+              sockets.remove(socket);
+              socket.close();
+              print('${recv["user"]} disconnected');
+            }
+          }
           // Broadcast it to all connected cleints
           print(pack);
           for (final s in sockets) {

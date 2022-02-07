@@ -8,7 +8,7 @@ Future<void> main(List<String> arguments) async {
   }
 
   // Assign variables
-  var socket; // this is honestly very retarded. this is for try/catch on line 23 to work.
+  var socket; // goddamn
   var host = arguments[0].split(':')[0];
   int port = int.parse(arguments[0].split(':')[1]);
   var user;
@@ -23,7 +23,8 @@ Future<void> main(List<String> arguments) async {
     socket = await Socket.connect(host, port);
     print('\/\/ Connected to $host at $port as $user\n');
   } on SocketException catch (e) {
-    print('Couldn\'t make connection with the specified host:port combination. Aborting.');
+    print(
+        'Couldn\'t connect with the specified host:port combination. Aborting.');
     exit(1);
   }
 
