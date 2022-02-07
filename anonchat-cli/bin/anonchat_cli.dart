@@ -33,7 +33,9 @@ Future<void> main(List<String> arguments) async {
   req['user'] = user;
   stdin.listen((v) {
     req['msg'] = utf8.decode(v).trim();
-    socket.add(utf8.encode(jsonEncode(req)));
+    if(req['msg'] != ''){
+      socket.add(utf8.encode(jsonEncode(req)));
+    }
   });
 
   // Print new messages
