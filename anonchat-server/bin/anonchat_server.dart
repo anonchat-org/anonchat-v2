@@ -22,20 +22,15 @@ Future<void> main(List<String> arguments) async {
       (packet) {
         var pack = utf8.decode(packet, allowMalformed: true).trim();
         try {
-          // Check if user wants to disconnect
-          // PLEASE I SWEAR TO GOD FIX THIS
+          // Check if message is empty
           var recv = json.decode(pack);
-          for (final lcmd in ['/LEAVE', '/DISCONNECT', '/QUIT']) {
-            if (lcmd == recv['msg']) {
-              sockets.remove(socket);
-              socket.close();
-              print('${recv["user"]} disconnected');
+          if (recv['msg'] == '') {
+          } else {
+            // Broadcast it to all connected cleints
+            print(pack);
+            for (final s in sockets) {
+              s.add(packet);
             }
-          }
-          // Broadcast it to all connected cleints
-          print(pack);
-          for (final s in sockets) {
-            s.add(packet);
           }
         } on FormatException catch (e) {
           // In case the packet is using the v1 system (plaintext)
