@@ -18,11 +18,14 @@ Future<void> main(List<String> arguments) async {
     // Add fresh connected client to the list
     sockets.add(socket);
     // Send MOTD
-    var MOTD = new Map();
-    MOTD['user'] = '[SERVER]';
-    MOTD['msg'] =
-        '\n// Welcome to the server!\n// This is a sample join message.\n';
-    socket.add(utf8.encode(json.encode(MOTD)));
+    bool MOTDtoggle = false;
+    if (MOTDtoggle) {
+      var MOTD = new Map();
+      MOTD['user'] = '[SERVER]';
+      MOTD['msg'] =
+          '\n// Welcome to the server!\n// This is a sample join message.\n';
+      socket.add(utf8.encode(json.encode(MOTD)));
+    }
 
     socket.listen(
       (packet) {
