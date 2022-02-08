@@ -13,10 +13,16 @@ Future<void> main(List<String> arguments) async {
 
   /// TCP server itself
   final server = await ServerSocket.bind('0.0.0.0', int.parse(arguments[0]));
-  print('\/\/ Launched server on port ${int.parse(arguments[0])}\n');
+  print('// Launched server on port ${int.parse(arguments[0])}\n');
   server.listen((socket) {
     // Add fresh connected client to the list
     sockets.add(socket);
+    // Send MOTD
+    var MOTD = new Map();
+    MOTD['user'] = '[SERVER]';
+    MOTD['msg'] =
+        '\n// Welcome to the server!\n// This is a sample join message.\n';
+    socket.add(utf8.encode(json.encode(MOTD)));
 
     socket.listen(
       (packet) {
@@ -34,7 +40,7 @@ Future<void> main(List<String> arguments) async {
           }
         } on FormatException catch (e) {
           // In case the packet is using the v1 system (plaintext)
-          print('v1 packet recieved: $pack');
+          print('v1 packet: $pack');
           for (final s in sockets) {
             s.add(packet);
           }

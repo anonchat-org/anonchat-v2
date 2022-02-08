@@ -21,7 +21,7 @@ Future<void> main(List<String> arguments) async {
   // Connect to the server
   try {
     socket = await Socket.connect(host, port);
-    print('\/\/ Connected to $host at $port as $user\n');
+    print('// Connected to $host at $port as $user\n');
   } on SocketException catch (e) {
     print(
         'Couldn\'t connect with the specified host:port combination. Aborting.');
@@ -33,19 +33,19 @@ Future<void> main(List<String> arguments) async {
   req['user'] = user;
   stdin.listen((v) {
     req['msg'] = utf8.decode(v).trim();
-    if(req['msg'] != ''){
+    if (req['msg'] != '') {
       socket.add(utf8.encode(jsonEncode(req)));
     }
   });
 
   // Print new messages
   socket.listen((v) {
+    var recv = utf8.decode(v, allowMalformed: true).trim();
     try {
-      var recv =
-          jsonDecode(utf8.decode(v, allowMalformed: true).trim()); // lgtm
-      print('<${recv["user"]}> ' + recv["msg"]);
+      var recvj = json.decode(recv);
+      print('<${recvj["user"]}> ' + recvj["msg"]);
     } on FormatException catch (e) {
-      print('<v1 message> ' + utf8.decode(v, allowMalformed: true).trim());
+      print('<v1 message> ' + recv);
     }
   });
 }
