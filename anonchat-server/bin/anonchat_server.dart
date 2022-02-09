@@ -4,7 +4,7 @@ import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
   if (arguments.isEmpty) {
-    print('Usage: anonchat-server <port>');
+    print('Usage: anonchat-server <port> [--motd]');
     return;
   }
 
@@ -18,13 +18,14 @@ Future<void> main(List<String> arguments) async {
     // Add fresh connected client to the list
     sockets.add(socket);
     // Send MOTD
-    bool MOTDtoggle = false;
-    if (MOTDtoggle) {
-      var MOTD = new Map();
-      MOTD['user'] = '[SERVER]';
-      MOTD['msg'] =
-          '\n// Welcome to the server!\n// This is a sample join message.\n';
-      socket.add(utf8.encode(json.encode(MOTD)));
+    for (final m in arguments) {
+      if (m == '--motd') {
+        var MOTD = new Map();
+        MOTD['user'] = '[SERVER]';
+        MOTD['msg'] =
+            '\n// Welcome to the server!\n// This is a sample join message.\n';
+        socket.add(utf8.encode(json.encode(MOTD)));
+      }
     }
 
     socket.listen(
