@@ -57,6 +57,8 @@ First, you need to port-forward the port you are going to run your server on. If
 
 Run the server instance with something like `./server 2345`, replacing 6969 with whatever port you wanna run the server on.
 
+You can also pass the `--motd` argument to the server, then it will send the MOTD message from the server config to anyone who joins the server. Like this: `./server 2345 --motd`
+
 ---
 
 ### Feel free to open an issue/PR if you have anything to say/ask!
