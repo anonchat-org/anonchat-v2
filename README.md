@@ -45,16 +45,16 @@ After you've downloaded the binaries from the [releases](https://github.com/anon
 ### Client
 Usage: `./cli <host>:<port> [nick]`
 
-`host`: an IP address or a domain (eg. 5.68.217.124, github.com)
-`port`: the port that the server is running on (eg. 2345, 25565)
+`host`: an IP address or a domain (eg. 5.68.217.124, github.com) \
+`port`: the port that the server is running on (eg. 2345, 25565) \
 `nick`: optional - your nickname, can be anything, defaults to Anon (eg. calamity, dave, COD\_gaming\_2005) 
 
 Example: `./cli example.com:2345 bob`
 ### Server
 Usage: `./server <port> [--motd]`
 
-`port`: the port that the server will be running on, needs to be port-forwarded in router settings.
-`--motd`: optional - this flag is used for displaying a personal message on user join, configured in server file. **currently in beta.**
+`port`: the port that the server will be running on, needs to be port-forwarded in router settings. \
+`--motd`: optional - this flag is used for displaying a personal message on user join, configured in server file. **currently in beta.** 
 
 ---
 
