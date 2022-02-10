@@ -3,7 +3,8 @@ import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
   if (arguments.isEmpty) {
-    print('Usage: anonchat-cli <host:port> [username]');
+    var filename = Platform.script.toFilePath().split('/').last;
+    print('Usage: $filename <host:port> [username]');
     return;
   }
 
@@ -25,7 +26,7 @@ Future<void> main(List<String> arguments) async {
   } on SocketException catch (e) {
     print(
         'Couldn\'t connect with the specified host:port combination. Aborting.');
-    exit(1);
+    return;
   }
 
   // Construct a request and send it

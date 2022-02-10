@@ -4,7 +4,8 @@ import 'dart:io';
 
 Future<void> main(List<String> arguments) async {
   if (arguments.isEmpty) {
-    print('Usage: anonchat-server <port> [--motd]');
+    var filename = Platform.script.toFilePath().split('/').last; // wtf
+    print('Usage: $filename <port> [--motd]');
     return;
   }
 
@@ -22,8 +23,7 @@ Future<void> main(List<String> arguments) async {
       if (m == '--motd') {
         var MOTD = new Map();
         MOTD['user'] = '[SERVER]';
-        MOTD['msg'] =
-            '\n// Welcome to the server!\n// This is a sample join message.\n';
+        MOTD['msg'] = '\n// Welcome to the server!\n';
         socket.add(utf8.encode(json.encode(MOTD)));
       }
     }
