@@ -51,10 +51,18 @@ Usage: `./cli <host>:<port> [nick]`
 
 Example: `./cli example.com:2345 bob`
 ### Server
-Usage: `./server <port> [--motd]`
+Usage: `./server <port>`
 
 `port`: the port that the server will be running on, needs to be port-forwarded in router settings. \
-`--motd`: optional - this flag is used for displaying a personal message on user join, configured in server file. **currently in beta.** 
+
+On the first run the server will notify you that a `server.json` config file has been created. You can find and edit it in `~/.config/anonchat/server.json`. It features these keys:
+
+`serverName`: will be used later, but you can set it now, just in case. \
+`protocol`: will be used later, but **DO NOT CHANGE** the value from v2, as that might cause clients to not connect to your server. \
+`motdEnable`: a toggle for `motd`. `false` by default, change it to `true` if you want to. \
+`motd`: abbreviation for "message of the day". a greeting message to people joining the server. off by default, turn on by changing `motdEnable` to `true`.
+
+Running the server executable again should launch it immediately.
 
 ---
 
