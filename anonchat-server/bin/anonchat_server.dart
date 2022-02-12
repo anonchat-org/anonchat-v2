@@ -88,7 +88,13 @@ Future<void> main(List<String> arguments) async {
       },
     )
       // Remove the socket from the list on disconnect or error
-      ..onError((_) => sockets.remove(socket))
-      ..onDone(() => sockets.remove(socket));
+      ..onError((_) {
+        socket.close();
+        sockets.remove(socket);
+      })
+      ..onDone(() {
+        socket.close();
+        sockets.remove(socket);
+      });
   });
 }
