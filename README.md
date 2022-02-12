@@ -1,7 +1,9 @@
 <div align="center" style="text-align:center">
 
 <h1>AnonChat</h1>
-<i>Originally made by Arslee on <a href="https://github.com/arslee07/anonchat">arslee07/anonchat</a>.</i>
+<i>Originally made by Arslee on <a href="https://github.com/arslee07/anonchat">arslee07/anonchat</a>.</i><br><br>
+<img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/anonchat-org/anonchat-v2?logo=github">
+<img alt="License" src="https://img.shields.io/github/license/anonchat-org/anonchat-v2">
 <hr/>
 <img src="https://pyt.igorek.dev/images/acpreview.png" width="500px"/>
 </div>
