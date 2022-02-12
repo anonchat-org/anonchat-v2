@@ -57,10 +57,12 @@ Usage: `./server <port>`
 
 On the first run the server will notify you that a `server.json` config file has been created. You can find and edit it in `~/.config/anonchat/server.json`. It features these keys:
 
-`serverName`: will be used later, but you can set it now, just in case. \
-`protocol`: will be used later, but **DO NOT CHANGE** the value from v2, as that might cause clients to not connect to your server. \
-`motdEnable`: a toggle for `motd`. false by default, change it to true if you want to. \
-`motd`: abbreviation for "message of the day". a greeting message to people joining the server. off by default, turn on by changing *motdEnable* to true.
+```json
+"serverName": will be used later, but you can set it now, just in case.
+"protocol": will be used later, but **DO NOT CHANGE** the value from v2, as that might cause clients to not connect to your server.
+"motdEnable": a toggle for `motd`. false by default, change it to true if you want to.
+"motd": abbreviation for "message of the day". a greeting message to people joining the server. off by default, turn on by changing *motdEnable* to true.
+```
 
 Running the server executable again should launch it immediately.
 
