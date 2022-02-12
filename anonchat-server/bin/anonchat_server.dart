@@ -84,6 +84,10 @@ Future<void> main(List<String> arguments) async {
           for (final s in sockets) {
             s.add(packet);
           }
+        } on OSError catch (e) {
+          // If we catch errors like broken pipe, then remove the socket from list
+          socket.close();
+          sockets.remove(socket);
         }
       },
     )
