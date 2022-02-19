@@ -75,7 +75,7 @@ Future<void> main(List<String> arguments) async {
             // Broadcast it to all connected cleints
             print(pack);
             for (final s in sockets) {
-              s.add(packet);
+              s.add(utf8.encode(pack));
             }
           }
         } on FormatException catch (e) {
