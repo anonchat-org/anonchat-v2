@@ -31,7 +31,7 @@ Instructions:
 git clone https://github.com/anonchat-org/anonchat-v2.git
 cd anonchat-v2
 
-# 2. Download dependencies
+# 2. Get dependencies
 dart pub get -C anonchat-cli
 dart pub get -C anonchar-server
 
