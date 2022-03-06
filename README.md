@@ -31,9 +31,14 @@ Instructions:
 git clone https://github.com/anonchat-org/anonchat-v2.git
 cd anonchat-v2
 
-# 2. Build the executables
+# 2. Download dependencies
+dart pub get -C anonchat-cli
+dart pub get -C anonchar-server
+
+# 3. Build the executables
 #    If you want to build for other platforms - see `dart compile`
 #    A build script is provided - `./build.sh`
+
 mkdir build
 dart compile exe anonchat-server/bin/anonchat_server.dart -o build/server && chmod +x build/server # for server
 dart compile exe anonchat-cli/bin/anonchat_cli.dart -o build/cli && chmod +x build/cli # for cli client
